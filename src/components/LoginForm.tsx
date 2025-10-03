@@ -10,8 +10,8 @@ type Props = {
 };
 
 export function LoginForm({ onLogin, error, isDarkMode }: Props) {
-  const [username, setUsername] = useState('tyke0303');
-  const [password, setPassword] = useState('Rocketpro1!');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -20,7 +20,7 @@ export function LoginForm({ onLogin, error, isDarkMode }: Props) {
 
     setIsSubmitting(true);
     try {
-      await onLogin(username, password);
+      await onLogin(email, password);
     } finally {
       setIsSubmitting(false);
     }
@@ -40,10 +40,10 @@ export function LoginForm({ onLogin, error, isDarkMode }: Props) {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label 
-              htmlFor="username" 
+              htmlFor="email" 
               className={`block text-sm font-medium mb-1 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}
             >
-              Username
+              Email
             </label>
             <div className="relative">
               <div className={`absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none ${
@@ -52,10 +52,10 @@ export function LoginForm({ onLogin, error, isDarkMode }: Props) {
                 <User className="h-5 w-5" />
               </div>
               <input
-                id="username"
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className={`block w-full pl-10 pr-3 py-2 rounded-md ${
                   isDarkMode 
                     ? 'bg-gray-700 text-white placeholder-gray-400 border-gray-600' 
@@ -63,7 +63,7 @@ export function LoginForm({ onLogin, error, isDarkMode }: Props) {
                 } border focus:outline-none focus:ring-2 ${
                   isDarkMode ? 'focus:ring-purple-500' : 'focus:ring-indigo-500'
                 }`}
-                placeholder="Admin Username"
+                placeholder="Admin Email"
                 required
               />
             </div>

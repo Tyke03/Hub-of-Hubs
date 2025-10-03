@@ -95,13 +95,13 @@ function App() {
     }
   }, [user]);
 
-  const handleAdminSignIn = async (username: string, password: string) => {
+  const handleAdminSignIn = async (email: string, password: string) => {
     try {
       setAuthError(null);
       
       // Skip signup attempt and go straight to sign in since we know the user exists
       const { error: signInError } = await supabase.auth.signInWithPassword({
-        email: `${username}@example.com`,
+        email,
         password,
       });
       
